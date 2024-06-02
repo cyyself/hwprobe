@@ -1,4 +1,4 @@
-#include "hwprobe.h"
+#include <asm/hwprobe.h>
 #include <unistd.h>
 #include <sys/syscall.h>
 

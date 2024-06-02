@@ -10,6 +10,12 @@ This example demonstrates how to use the hwprobe syscall to probe hardware featu
 gcc -o hwprobe hwprobe.c
 ```
 
+If it failed due to missing `.h` or some extension is not in the header files, you should use the builtin `hwprobe.`h` as a workaround:
+
+```bash
+gcc -o hwprobe hwprobe.c -I./include
+```
+
 2. Run the program:
 
 ```console
