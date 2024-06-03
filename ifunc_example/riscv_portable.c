@@ -1,6 +1,8 @@
+#if __has_include(<asm/hwprobe.h>)
+
 #include "riscv_portable.h"
-#include <sys/syscall.h>
 #include <asm/hwprobe.h>
+#include <sys/syscall.h>
 #include <stddef.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -41,6 +43,44 @@ void query_isa() {
 }
 
 int riscv_has_zbb() {
+#ifdef RISCV_HWPROBE_EXT_ZBB
     if (!portable_riscv_isa_ext_0_useable) query_isa();
     return portable_riscv_isa_ext_0 & RISCV_HWPROBE_EXT_ZBB ? 1 : 0;
+#else
+    return 0;
+#endif
 }
+
+int riscv_has_v() {
+#ifdef RISCV_HWPROBE_IMA_V
+    if (!portable_riscv_isa_ext_0_useable) query_isa();
+    return portable_riscv_isa_ext_0 & RISCV_HWPROBE_IMA_V ? 1 : 0;
+#else
+    return 0;
+#endif
+}
+
+int riscv_has_zvbb() {
+#ifdef RISCV_HWPROBE_EXT_ZVBB
+    if (!portable_riscv_isa_ext_0_useable) query_isa();
+    return portable_riscv_isa_ext_0 & RISCV_HWPROBE_EXT_ZVBB ? 1 : 0;
+#else
+    return 0;
+#endif
+}
+
+#else /* __has_include(<asm/hwprobe.h>) */
+
+int riscv_has_zbb() {
+    return 0;
+}
+
+int riscv_has_v() {
+    return 0;
+}
+
+int riscv_has_zvbb() {
+    return 0;
+}
+
+#endif
