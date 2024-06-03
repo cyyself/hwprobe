@@ -6,12 +6,16 @@ int main(int argc, char* argv[]) {
     unsigned int res = 0;
     long loop = 1e6;
     if (argc >= 2) loop = atol(argv[1]);
+    int *arr;
+    long vsize = 256;
+    if (argc >= 3) vsize = atol(argv[2]);
+    arr = malloc(4 * vsize);
     for (long i=0;i<loop;i++) {
-        unsigned int arr[64];
-        for (int j=0;j<64;j++) arr[j] = j + i;
-        ror32(arr, i % 32, 64);
-        for (int j=0;j<64;j++) res ^= arr[j];
+        for (int j=0;j<vsize;j++) arr[j] = j + i;
+        ror32(arr, i % 32, vsize);
+        for (int j=0;j<vsize;j++) res ^= arr[j];
     }
     printf("%d\n", res);
+    free(arr);
     return 0;
 }
