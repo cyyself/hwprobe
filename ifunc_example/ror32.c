@@ -2,7 +2,7 @@
 #include "ror32.h"
 #include <limits.h>
 
-__attribute__((target("arch=+zbb,+zvbb"))) size_t ror32_zbb_zvbb(unsigned int *a, unsigned int b, size_t size) {
+__attribute__((target("arch=+zbb,+v,+zvbb"))) size_t ror32_zbb_zvbb(unsigned int *a, unsigned int b, size_t size) {
     for (size_t i = 0; i < size; i++) {
         a[i] = a[i] >> b | (a[i] << (32 - b));
     }
