@@ -6,7 +6,7 @@ int main(int argc, char* argv[]) {
     unsigned int res = 0;
     long loop = 1e6;
     if (argc >= 2) loop = atol(argv[1]);
-    int *arr;
+    unsigned int *arr;
     long vsize = 256;
     if (argc >= 3) vsize = atol(argv[2]);
     arr = malloc(4 * vsize);
