@@ -55,3 +55,4 @@ Maybe it should be fixed in the future.
 Reference:
 - [RISC-V Function Attributes (Using GCC)](https://gcc.gnu.org/onlinedocs/gcc/RISC-V-Function-Attributes.html)
 - [Common Function Attributes (Using GCC)](https://gcc.gnu.org/onlinedocs/gcc/Common-Function-Attributes.html)
+- [Build retargetable binary on RISC-V by Yangyu Chen](https://docs.google.com/presentation/d/1t4Qn7kPPGxQani5dYc31Mm6yb_nOW19oAHJ3ZYM1LP8)
