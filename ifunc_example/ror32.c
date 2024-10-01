@@ -1,6 +1,7 @@
 #include "riscv_portable.h"
 #include "ror32.h"
 #include <limits.h>
+#include <stdint.h>
 
 __attribute__((target("arch=+zbb,+v,+zvbb")))
 size_t ror32_zbb_zvbb(unsigned int *a, unsigned int b, size_t size) {
@@ -33,7 +34,8 @@ size_t ror32_normal(unsigned int *a, unsigned int b, size_t size) {
     return size;
 }
 
-static size_t (*resolve_ror32(unsigned int a, unsigned int b, size_t size))() {
+static __typeof(ror32_normal)*
+resolve_ror32(uint64_t dl_hwcap, void* hwprobe_func) {
     if (riscv_has_zvbb() && riscv_has_zbb()) return ror32_zbb_zvbb;
     else if (riscv_has_zbb() && riscv_has_v()) return ror32_zbb_v;
     else if (riscv_has_zbb()) return ror32_zbb;
